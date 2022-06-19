@@ -1,3 +1,15 @@
+# Contents
+- [Contents](#contents)
+- [Introduction to MR-KAR HRMS](#introduction-to-mr-kar-hrms)
+- [Run the App](#run-the-app)
+- [Built-in User Credentials](#built-in-user-credentials)
+  - [Superuser & Staff Users](#superuser--staff-users)
+    - [Important for Staff Users](#important-for-staff-users)
+  - [Candidates](#candidates)
+    - [Important for Candidates](#important-for-candidates)
+- [To Prepare for Production Ready](#to-prepare-for-production-ready)
+
+
 # Introduction to MR-KAR HRMS
 
 This is a simple job application web app. There are 3 types of user:
@@ -6,6 +18,16 @@ This is a simple job application web app. There are 3 types of user:
 - Candidate
 
 ![](assets/1.png)
+
+# Run the App
+
+You can easily run the app by using Docker. 
+1. Clone the repo
+2. `docker compose build`
+3. `docker compose up -d`
+4. Then you can visit `127.0.0.1:8000`
+5. You can learn the credentials for built-in users by the section below
+
 
 # Built-in User Credentials
 
