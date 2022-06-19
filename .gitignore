@@ -163,3 +163,4 @@ cython_debug/
 venv/
 db.sqlite3
 static/
+.vscode/
