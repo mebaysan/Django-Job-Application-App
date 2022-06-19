@@ -1,0 +1,45 @@
+{% extends 'utilities/base.html' %}
+{% load static %}
+
+{% block body %}
+
+    <div class="container position-absolute top-50 start-50 translate-middle w-50">
+        <h1>Register for {{get_app_name}}</h1>
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="inputUsername" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputEmail" name="inputUsername">
+            </div>
+            <div class="mb-3">
+              <label for="inputPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+            </div>
+            <div class="mb-3">
+                <label for="inputFirstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="inputFirstName" name="inputFirstName">
+              </div>
+              <div class="mb-3">
+                <label for="inputLastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="inputLastName" name="inputLastName">
+              </div>
+            <div class="mb-3">
+              <label for="inputRole" class="form-label">Role</label>
+              <select class="form-select" name="inputRole">
+                <option value="Candidate">Candidate</option>
+                <option value="Staff">Staff</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success">Register</button>
+          </form>
+          <br>
+          <div class="row">
+            <div class="col">
+              <a href="{% url 'login' %}">
+                <button type="submit" class="btn btn-info" style="color: white;">Redirect for Staff Log In >></button>
+              </a>
+            </div>
+          </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+<!-- Panel Logo & Text  -->
+ {% block branding %}
+    <h1 id="head">
+        <a href="{% url 'admin:index' %}">{{get_app_name}} Admin</a>
+    </h1>
+{% endblock %} 
+<!-- Panel Logo & Text  -->
+
+
+
+<!-- Panel CSS  -->
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'admin/custom_admin.css' %}">
+
+{% endblock extrastyle %}
+<!-- Panel CSS  -->

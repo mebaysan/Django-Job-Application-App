@@ -1,0 +1,62 @@
+{% extends 'utilities/base.html' %} {% load static %} {% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+      <div class="col-6">
+        <h3>Profile & Preferences</h3>
+      <form method="post" action="{% url 'candidate:profile' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="inputEmail" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmail"
+            name="inputEmail"
+            value="{{request.user.username}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="inputFirstName" class="form-label">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputFirstName"
+            name="inputFirstName"
+            value="{{request.user.first_name}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="inputLastName" class="form-label">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputLastName"
+            name="inputLastName"
+            value="{{request.user.last_name}}"
+          />
+        </div> 
+        <div class="mb-3">
+          <label for="inputBio" class="form-label">Bio</label>
+          <textarea class="form-control" id="inputBio" rows="3" name="inputBio">{{request.user.candidate_profile.bio}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="inputSkills" class="form-label">Skills</label>
+            <p style="font-size: 12px;"><mark>You can select multiple by using `CTRL + Click`</mark></p>
+            <select class="form-select" name="inputSkills" id="inputSkills" multiple style="height: 200px;">
+                {% for skill in job_skills %}
+                <option value="{{skill.id}}" {% if skill in request.user.candidate_profile.skills.all %} selected {% endif %} >{{skill}}</option>
+                {% endfor %}
+              </select>
+          </div>
+        <button type="submit" class="btn btn-success">Update Profile</button>
+      </form>
+      <br>
+      <a href="{% url 'candidate:update_password' %}">
+        <button type="submit" class="btn btn-info" style="color: white;">Redirect to Update Password >></button>
+      </a>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>
+{% endblock %}

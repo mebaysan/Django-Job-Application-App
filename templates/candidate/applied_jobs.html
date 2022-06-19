@@ -1,0 +1,43 @@
+{% extends 'utilities/base.html' %} {% load static %} {% block body %}
+
+<div class="container">
+  <h1 style="margin-bottom: 50px;">Your applied jobs are here</h1>
+  <div class="row">
+    <div class="col-12">
+        {% if job_posts %}
+        {% for job in job_posts %}
+        <div class="row" style="border: 1px black solid; border-radius: 25px; margin: 10px 0px 10px 0px; padding: 5px;">
+          <div class="col">
+            <div class="row">
+              <div class="col-12">
+                <h3>{{job.name}}</h3>
+              </div>
+              <div class="col-2">
+                <h6 style="float: right;">{{job.updated_date|date:"d-m-Y"}}</h6>
+              </div>
+            </div>
+            <h6>{{job.location}} - {{job.get_job_type_display}}</h6>
+            <p>{{job.description}}</p>
+            <div style="display: flex; flex-direction: row;">
+              {% for skill in job.skills.all %}
+              <div style="border: 1px black solid; padding: 5px; margin: 0px 5px 0px 5px;">{{skill}}</div>
+              {% endfor %}
+            </div>
+  
+            <button class="btn btn-success" style="margin-top: 10px; margin-bottom:10px;">You have already applied for this position</button>
+            
+            <form action="{% url 'candidate:undo_for_position' %}" method="post" style="float:right;">
+              {% csrf_token %}
+              <input type="text" style="display: none;" name="appliedJobSlug" value="{{job.slug}}">
+              <button class="btn btn-outline-danger" style="margin-top: 10px; margin-bottom:10px;">Undo application for this position</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h1>You haven't applied any job.</h1>
+        {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
