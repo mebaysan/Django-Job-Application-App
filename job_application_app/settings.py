@@ -30,8 +30,6 @@ if DEBUG == True:
 else:
     from .config_prod import *
 
-ALLOWED_HOSTS = []
-
 # Application definition
 
 INSTALLED_APPS = [
